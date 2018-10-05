@@ -1,0 +1,98 @@
+.form {
+    &__group:not(:last-child) {
+        margin-bottom: 2rem;
+    }
+
+    &__input {
+        font-size: 1.5rem;
+        //input element needs to have inheritance set. Default browser sets this.
+        font-family: inherit;
+        color: inherit;
+
+        padding: 1.5rem 2rem;
+        border-radius: $borderRad;
+        background-color: rgba($color-white, .5);
+        border: none;
+        border-bottom: 3px solid transparent;
+        width: 90%;
+        display: block;
+        transition: all .3s;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 1rem 2rem rgba($color-black, .1);
+            border-bottom: 3px solid $color-primary;
+
+            &:invalid {
+                border-bottom: 3px solid $color-secondary-dark;
+            }
+        }
+
+
+        &::-webkit-input-placeholder {//sudo element!!!!!
+            color: $color-grey-dark-2;
+        }
+    }
+
+    &__label {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-left: 2rem;
+        margin-top: .7rem;
+        display: block;
+        transition: all .3s;
+    }
+    // + is the ADJASENT sibling, on the html it is on the same level & below (after!!!)
+    &__input:placeholder-shown + &__label {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-4rem);
+    }
+
+    &__radio-group {
+        width: 49%;
+        display: inline-block;
+    }
+
+    &__radio-label {
+        font-size: $default-font-size;
+        cursor: pointer;
+        position: relative;
+        padding-left: 4rem;
+    }
+
+    &__radio-button {
+        $radSize-1: 3rem;
+        height: $radSize-1;
+        width: $radSize-1;
+        border: 5px solid $color-primary;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: -.5rem;
+
+        &::after {
+            $radSize-2: 1.3rem;
+            content:"";
+            display: block;
+            height: $radSize-2;
+            width: $radSize-2;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: $color-primary;
+            opacity: 0;
+            transition: opacity .2s;
+        }
+    }
+    //~ also a sibling selector // get click from radio button and select span sudo element
+    &__radio-input:checked ~ &__radio-label &__radio-button::after {
+        opacity: 1;
+    }
+    &__radio-input {
+        display: none;
+    }
+}

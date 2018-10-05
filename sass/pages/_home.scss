@@ -39,9 +39,22 @@
 }
 
 .book {
-    background-image: url(../../img/nat-10.jpg);
+    $GradPercent: 50%;
+    background-image: linear-gradient(
+        105deg
+        , rgba($color-white, .9) $GradPercent
+        , transparent $GradPercent
+    )
+    , url(../../img/nat-10.jpg) ;
     background-size: 100%;//same as cover
     border-radius: $borderRad;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
 
-    height: 50rem;
+    height: 54rem;
+
+    &__form {
+        width: 50%;
+        padding: 6rem;
+        //float: left;
+    }
 }
