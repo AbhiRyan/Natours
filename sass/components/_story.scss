@@ -9,20 +9,41 @@
     font-size: $default-font-size;
     transform: skewX(-12deg);
 
+    @include respond (tab-port){
+        width: 100%;
+        padding: 4rem;
+        padding-left: 7rem;
+        //transform: skewX(0);
+    }
+    @include respond (phone){
+        transform: skewX(0);
+    }
+
     &__shape {
-        background-color: orangered;
+        //background-color: orangered;
         //below are requirements of the shape-outside (text flows around) function
         width: 15rem;
         height: 15rem;
         float: left;
         -webkit-shape-outside: circle(50% at 50% 50%);
         shape-outside: circle(50% at 50% 50%);
-
-        -webkit-clip-path: circle(50% at 50% 50%);
-        clip-path: circle(50% at 50% 50%);
+        overflow: hidden;
+        
         transform: translateX(-3rem) skewX(12deg);
 
         position: relative;
+
+        @supports (clip-path:polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);
+            
+        }
+
+        @include respond (phone){
+            transform: translateX(-3rem) skewX(0deg);
+            width: 12rem;
+            height: 12rem;
+        }
     }
     //Images always needs to have a defined width
     &__img {
@@ -30,10 +51,17 @@
         transform: translateX(-3.6rem) scale(1.1);//recentres manualy
         //backface-visibility: hidden;//not needed?
         transition: all .5s;
+
+        @include respond(phone){
+            width: 150%
+        }
     }
 
     &__text {
         transform: skewX(12deg);
+        @include respond (phone){
+            transform: skewX(0deg);
+        }
     }
 
     &__caption {

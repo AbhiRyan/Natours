@@ -13,6 +13,7 @@
         top: 0;
         left: 0;
         width: 100%;
+        -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
         border-radius: $borderRad;
         overflow: hidden; //fix loss of rounded corners due to inclusion of img element.
@@ -109,10 +110,7 @@
     }
     // back side styling----------------------------------------------------------------------------------
     &__cta {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        @include centerElement;
         width: 90%; //fix button
         text-align: center;
     }
@@ -129,4 +127,59 @@
         font-size: 6rem;
         font-weight: 100;
     }
+
+
+
+
+
+    //@include respond(tab-port) {
+    @media only screen and (max-width: 56.25em),
+        only screen and (hover: none) {//identifies if a device is touch -has no hover
+        height: auto;
+        border-radius: 3px;
+        background-color: $color-white;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+        
+        &__side {
+            height: auto;
+            position: relative;
+            box-shadow: none;
+
+            &--back {
+                transform: rotateY(0deg);
+                clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+                
+            }
+        }
+
+        &:hover &__side--front {
+            transform: rotateY(0deg);
+        }
+        &:hover &__side--back {
+            transform: rotateY(0deg);
+        }
+        .__details {
+            padding: 1rem 2rem;
+        }
+
+        
+        // back side styling----------------------------------------------------------------------------------
+        &__cta {
+            position: relative;
+            top: 0;
+            left: 0;
+            transform: translate(0);
+            width: 100%; //fix button
+            padding: 4rem;
+        }
+
+        &__price-box {
+            margin-bottom: 3rem;
+        }
+        
+        &__price-value {
+            font-size: 4rem;
+        }
+    }
+
 }

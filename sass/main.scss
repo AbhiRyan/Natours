@@ -14,17 +14,19 @@
 @import "components/story";
 @import "components/bg-video";
 @import "components/form";
+@import "components/popup";
 
 @import "layout/header";
 @import "layout/grid";
 @import "layout/footer";
+@import "layout/navigation";
 
 @import "pages/home";
 
 /*
 
 CMD npm init //will generate initial pakage.json
-CMD npm run compile:sass
+CMD npm run watch:sass
 CMD live-server --browser=chrome
 */
 
